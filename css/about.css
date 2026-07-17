@@ -312,3 +312,80 @@ body{
         grid-template-columns:1fr;
     }
 }
+
+/* ==========================================
+   RESPONSIVE (extra — added on top, nothing
+   above this line was changed)
+========================================== */
+
+/* tablet: smooth the jump between desktop sizing
+   and the 768px breakpoint above */
+@media (max-width:1024px) and (min-width:769px){
+    .main-content{
+        padding:36px;
+    }
+
+    .about-header h1{
+        font-size:36px;
+    }
+
+    .about-card{
+        padding:32px;
+        gap:26px;
+    }
+
+    .about-logo{
+        width:96px;
+        height:96px;
+    }
+
+    .about-logo i{
+        font-size:42px;
+    }
+
+    .about-info h2{
+        font-size:30px;
+    }
+}
+
+/* small phones */
+@media (max-width:380px){
+    .about-header h1{
+        font-size:26px;
+    }
+
+    .about-card{
+        padding:18px;
+        gap:14px;
+    }
+
+    .about-logo{
+        width:64px;
+        height:64px;
+    }
+
+    .about-logo i{
+        font-size:28px;
+    }
+
+    .about-info h2{
+        font-size:22px;
+    }
+
+    .about-info p{
+        font-size:14px;
+    }
+
+    .info-card{
+        padding:20px;
+    }
+
+    .info-card h3{
+        font-size:20px;
+    }
+
+    .tech-tags span{
+        padding:8px 14px;
+        font-size:13px;
+    }
+}
