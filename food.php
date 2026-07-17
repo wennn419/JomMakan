@@ -1,11 +1,12 @@
 <?php
 
 session_start();
+
 $isAdmin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 
 include "db_connect.php";
 
-$userId = $_SESSION["user_id"];
+$userId = $_SESSION["user_id"] ?? null;
 
 $from = $_GET['from'] ?? 'search';
 
@@ -15,17 +16,20 @@ if (!isset($_GET['id'])) {
 
 $id = (int)$_GET['id'];
 
-// Save to Recently Viewed
-$sql = "
-INSERT INTO recently_viewed (user_id, food_id)
-VALUES (?, ?)
-ON DUPLICATE KEY UPDATE
-viewed_at = CURRENT_TIMESTAMP
-";
+// Save to Recently Viewed (only if logged in)
+if ($userId !== null) {
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $userId, $id);
-$stmt->execute();
+    $sql = "
+    INSERT INTO recently_viewed (user_id, food_id)
+    VALUES (?, ?)
+    ON DUPLICATE KEY UPDATE
+    viewed_at = CURRENT_TIMESTAMP
+    ";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $userId, $id);
+    $stmt->execute();
+}
 
 $sql = "
 SELECT
@@ -50,18 +54,33 @@ if ($result->num_rows == 0) {
 
 $food = $result->fetch_assoc();
 
-$favouriteSql = "
-SELECT *
-FROM favourites
-WHERE food_id = $id
-AND user_id = $userId
-";
+$isFavourite = false;
 
-$favouriteResult = $conn->query($favouriteSql);
+if ($userId !== null) {
 
-$isFavourite = $favouriteResult->num_rows > 0;
+    $favouriteSql = "
+    SELECT *
+    FROM favourites
+    WHERE food_id = $id
+    AND user_id = $userId
+    ";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggleFavourite'])) {
+    $favouriteResult = $conn->query($favouriteSql);
+
+    $isFavourite = $favouriteResult->num_rows > 0;
+}
+
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST'
+    && isset($_POST['toggleFavourite'])
+) {
+
+    if ($userId === null) {
+
+        header("Location: login.php");
+        exit;
+
+    }
 
     if ($isFavourite) {
 

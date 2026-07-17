@@ -39,11 +39,6 @@ $currentPage = "surprise";
 </p>
         </div>
 
-        <div class="header-right">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-regular fa-bell"></i>
-        </div>
-
     </div>
 
     <div class="surprise-options">

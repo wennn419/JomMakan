@@ -10,23 +10,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <h1>JomMakan</h1>
     </div>
 
-    <nav>
-        <ul class="nav-links">
-
-            <li><a href="index.php">Home</a></li>
-
-        </ul>
-    </nav>
-
     <div class="nav-right">
-
-        <a href="favourites.php">
-            <img src="image/icons/heart.png" alt="Favourite">
-        </a>
-
-        <a href="#">
-            <img src="image/icons/notification.png" alt="Notification">
-        </a>
 
         <?php if(!isset($_SESSION["user_id"])): ?>
 

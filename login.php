@@ -244,21 +244,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </p>
 
-        <div class="divider">
-
-            <span>OR</span>
-
-        </div>
-
-        <div class="social-login">
-
-            <button type="button">G</button>
-            <button type="button">f</button>
-            <button type="button"></button>
-            <button type="button">X</button>
-
-        </div>
-
     </div>
 
 </div>

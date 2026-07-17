@@ -2,6 +2,11 @@
 
 session_start();
 
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}
+
 require_once "db_connect.php";
 
 $currentPage = "profile";
@@ -67,13 +72,6 @@ $recentCount = $recentQuery
     <?php include "includes/sidebar.php"; ?>
 
 <main class="main-content">
-
-<?php
-
-$username = $_SESSION["username"] ?? "Guest";
-$role = ucfirst($_SESSION["role"] ?? "User");
-
-?>
 
 <div class="profile-header">
 
