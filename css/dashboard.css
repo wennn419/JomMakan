@@ -1,0 +1,1310 @@
+* { 
+    
+    margin:0; 
+    
+    padding:0; 
+    
+    box-sizing:border-box; 
+
+}
+
+html {  
+        
+    zoom:90%; 
+    
+}
+
+body { 
+    font-family:"Poppins",sans-serif; 
+        
+    background:#FAF7F2; 
+}
+
+.dashboard { 
+        
+    display:flex; 
+        
+    overflow:hidden; 
+}
+
+.sidebar{
+
+    position:fixed;
+
+    top:16px;
+
+    left:16px;
+
+    bottom:16px;
+
+    width:260px;
+
+    background:#FFFCF8;
+
+    border:1px solid #ECE4D7;
+
+    border-radius:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:20px 16px;
+
+    flex-shrink:0;
+
+    overflow:hidden;
+
+    transition:all .3s ease;
+
+    box-shadow:0 8px 24px rgba(108,88,63,.12);
+
+}
+        .sidebar.collapsed { width: 64px; }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding: 8px 10px;
+        }
+        .logo { display: flex; align-items: center; gap: 8px; overflow: hidden; }
+        .logo-text {
+            font-size: 18px; font-weight: 700; color: #222;
+            white-space: nowrap; transition: opacity 0.2s ease;
+        }
+        .sidebar.collapsed .logo-text { opacity: 0; pointer-events: none; }
+
+        #toggle-btn {
+            border: none; background: none; cursor: pointer;
+            color: #999; font-size: 18px; padding: 6px;
+            border-radius: 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+        #toggle-btn:hover { background: #F0EBE1; color: #555; }
+
+        .sidebar-menu { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .menu-item img{
+    width:15px;
+    height:15px;
+    object-fit:contain;
+}
+
+        .menu-item i { font-size: 17px; flex-shrink: 0; width: 20px; text-align: center; }
+        .menu-item:hover { background: #F2EBE0; color: #C88A2D; }
+        .menu-item.active { background: #F5E7CC; color: #C88A2D; font-weight: 600; }
+
+        .sidebar.collapsed .menu-item { justify-content: center; padding: 10px 0; gap: 0; }
+        .sidebar.collapsed .menu-item .label { opacity: 0; width: 0; overflow: hidden; pointer-events: none; }
+
+        .sidebar-divider { height: 1.5px; background: #EcE2D3; margin: 30px 10px; }
+        .sidebar-bottom { display: flex; flex-direction: column; gap: 2px; margin-top:auto;}
+
+        .main-content{
+
+        flex:1;
+
+        min-height:0;   /* flex item 默认 min-height:auto,会撑出内容高度导致整页滚动而不是自己内部滚动,这行修正它 */
+
+        padding:40px 40px 16px 40px;
+
+        background:#FAF7F2;
+
+        overflow-y:auto;
+
+        height:100%;
+
+        margin-left:292px;  /* 因为 sidebar 变成 fixed 之后,就脱离了原本 flex 布局占的位置(260px 宽 + 左右各16px = 292px),右边内容如果不手动让出这块空间,会被 sidebar 盖住,所以要补一个左边距。 */
+
+        }
+
+.dashboard:has(.sidebar.collapsed) .main-content{
+    margin-left:96px;
+}
+
+/* sidebar logout */
+.logout-item{
+
+    color:#D9534F;
+
+}
+
+.logout-item i{
+
+    color:#D9534F;
+
+}
+
+/* ===========================
+   HOME SEARCH
+=========================== */
+
+.home-search{
+
+    margin-bottom:30px;
+
+}
+
+.search-box{
+
+    display:flex;
+    align-items:center;
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:0 18px;
+
+    height:50px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+.search-header{
+    margin-bottom:35px;
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:15px;
+
+    font-family:Poppins,sans-serif;
+
+    background:transparent;
+
+}
+
+.search-box input::placeholder{
+
+    color:#9a9a9a;
+
+}
+
+.search-icon{
+
+    width:18px;
+
+    height:18px;
+
+    margin-right:14px;
+
+}
+
+/* ===========================
+   POPULAR TODAY
+=========================== */
+
+.popular-section{
+
+    margin-top:10px;
+
+}
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:20px;
+
+    color:#222;
+
+}
+
+.section-title a{
+
+    text-decoration:none;
+
+    color:#C88A2D;
+
+    font-weight:600;
+
+}
+
+.section-title span{
+
+    font-size:14px;
+
+    color:#777;
+
+    font-weight:500;
+
+}
+
+.result-section{
+
+    margin-top:35px;
+
+}
+
+.popular-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+
+}
+
+/* ===========================
+   FOOD CARD
+=========================== */
+
+.food-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+    display:flex;
+    flex-direction:column;
+
+    height:280px;
+    transition:.25s;
+
+    text-decoration:none;
+    color:inherit;
+}
+
+.food-card img{
+    width:100%;
+    height:150px;
+    object-fit:contain;
+    padding:14px 14px 0;
+}
+
+.food-content{
+    padding:16px;
+}
+
+.food-content h3{
+    font-size:18px;
+    line-height:1.3;
+    margin-bottom:10px;
+}
+
+.food-price{
+    font-size:18px;
+    color:#C88A2D;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.food-price span{
+
+    color:#C88A2D;
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+.view-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:100%;
+
+    height:48px;
+
+    margin-top:auto;
+
+    border-radius:14px;
+
+    background:#F5E7CC;
+
+    color:#C88A2D;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.view-btn:hover{
+
+    background:#C88A2D;
+
+    color:white;
+
+}
+
+.result-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:0 10px;
+}
+
+.result-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+    padding:16px;
+
+    min-height:0;
+
+    gap:10px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+    cursor:pointer;
+
+}
+
+.result-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 14px 30px rgba(0,0,0,.08);
+
+}
+
+.result-card img{
+
+    width:100%;
+
+    height:140px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    flex-shrink:0;
+
+}
+
+.result-info{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    gap:4px;
+
+}
+
+.result-info h2{
+
+    font-size:17px;
+
+    margin-bottom:2px;
+
+    line-height:1.3;
+
+}
+
+.info-bottom{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:6px;
+
+}
+
+.restaurant{
+
+    color:#777;
+
+    margin-bottom:4px;
+
+}
+
+.rating{
+
+    color:#E8A100;
+
+    font-weight:600;
+
+    margin-bottom:4px;
+    font-size: 15px;
+
+}
+
+.price{
+
+    color:#777;
+    font-size: 14px;
+
+}
+
+.price span{
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+.compare-btn{
+
+    width:150px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#F5E7CC;
+
+    color:#C88A2D;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size: 18px;
+
+    margin-left:auto;
+}
+
+.compare-btn:hover{
+
+    background:#C88A2D;
+
+    color:white;
+
+}
+
+.filter-panel{
+
+    position: fixed;
+
+    top: 16px;
+
+    bottom: 16px;
+
+    right: -440px;
+
+    width: 420px;
+
+    padding: 28px;
+
+    background: #FFFCF8;
+
+    border: 1px solid #ECE4D7;
+
+    border-left: 1px solid #ECE4D7;
+
+    border-radius: 24px 0 0 24px;
+
+    box-shadow: 0 8px 24px rgba(108,88,63,.12);
+
+    transition: right .35s ease;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.filter-panel.show{
+
+    right:16px;
+
+}
+
+.filter-btn{
+
+    width:42px;
+
+    height:42px;
+
+    margin-left:14px;
+
+    border:none;
+
+    background:transparent;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.filter-btn:hover{
+
+    background:#F5E7CC;
+
+}
+
+.filter-btn img{
+
+    width:18px;
+
+    height:18px;
+
+    object-fit:contain;
+
+}
+
+.search-btn{
+
+    height:42px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#C89A4B;
+
+    color:white;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    margin-left:12px;
+
+}
+
+.search-btn:hover{
+
+    background:#B88636;
+
+}
+
+/* header 固定 */
+.filter-header{
+
+    position: sticky;
+
+    top: 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    background: #FFFCF8;
+
+    border-bottom: 1px solid #ECE4D7;
+
+    z-index: 10;
+
+}
+
+/* 中间内容滚动 */
+.filter-content{
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+
+}
+
+#close-filter{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:none;
+
+    color:#999;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#close-filter:hover{
+
+    background:#F0EBE1;
+
+    color:#C89A4B;
+
+}
+
+.filter-group{
+
+    margin-top:28px;
+
+}
+
+.filter-group h4{
+
+    margin-bottom:16px;
+
+    color:#222;
+
+    font-size:22px;
+
+}
+
+.filter-buttons{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+}
+
+.filter-buttons button{
+
+    border:1px solid rgba(208,139,40,.15);
+
+    background:rgba(255,255,255,.30);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    color:#666;
+
+    transition:.3s;
+
+}
+
+.filter-buttons button:hover{
+
+    background:rgba(208,139,40,.12);
+
+    border-color:#D08B28;
+
+    color:#D08B28;
+
+}
+
+.filter-buttons button.active{
+
+    background:rgba(208,139,40,.20);
+
+    border:1px solid #D08B28;
+
+    color:#D08B28;
+
+    font-weight:600;
+
+}
+
+.filter-action{
+
+    flex-shrink:0;
+
+    display:flex;
+
+    gap:12px;
+
+    padding-top:18px;
+
+    margin-top:18px;
+
+    background:#FFFCF8;
+
+    border-top:1px solid #ECE4D7;
+
+}
+
+.reset-btn{
+
+    flex:1;
+
+    height:48px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.25);
+
+    border:1px solid rgba(208,139,40,.15);
+
+    color:#777;
+
+}
+
+.reset-btn:hover{
+
+    background:rgba(208,139,40,.12);
+
+    border-color:#D08B28;
+
+    color:#D08B28;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.apply-btn{
+
+    flex:1;
+
+    height:48px;
+
+    border-radius:999px;
+
+    background:#D08B28;
+
+    color:white;
+
+    border:none;
+
+    font-weight:600;
+
+}
+
+.apply-btn:hover{
+
+    background:#B87A20;
+
+}
+
+.budget-input{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.30);
+
+    border:1px solid rgba(208,139,40,.15);
+
+    backdrop-filter:blur(12px);
+
+}
+
+.budget-input span{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#C88A2D;
+
+}
+
+.budget-input input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-size:15px;
+
+    font-family:Poppins,sans-serif;
+
+}
+
+.budget-input input::placeholder{
+
+    color:#999;
+
+}
+
+.budget-note{
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    color:#888;
+
+    line-height:1.5;
+
+}
+
+/* Chrome、Edge、Safari */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.no-result{
+    text-align:center;
+    margin-top:60px;
+    color:#666;
+}
+
+.no-result h2{
+    margin-bottom:10px;
+}
+
+.no-result p{
+    color:#999;
+}
+
+/* ==========================
+   Welcome Section
+========================== */
+
+.welcome-section{
+
+    margin-bottom:24px;
+
+}
+
+.welcome-section h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:6px;
+
+}
+
+.welcome-section span{
+
+    color:#BF9165;
+
+}
+
+.welcome-section p{
+
+    font-size:16px;
+
+    color:#777;
+
+}
+
+/* admin search */
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-title p{
+
+    margin-top:6px;
+
+    color:#777;
+
+}
+
+.section-title .admin-btn{
+
+    background:#C89A4B;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.admin-btn:hover{
+
+    background:#b88636;
+
+}
+
+.admin-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.card-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:12px;
+
+}
+
+.edit-btn,
+.delete-btn{
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.edit-btn{
+
+    color:#C89A4B;
+
+}
+
+.edit-btn:hover{
+
+    text-decoration:underline;
+
+}
+
+.delete-btn{
+
+    color:#D9534F;
+
+}
+
+.delete-btn:hover{
+
+    text-decoration:underline;
+
+}
+
+.success-alert{
+
+    background:#D1FAE5;
+
+    color:#065F46;
+
+    border:1px solid #A7F3D0;
+
+    border-radius:10px;
+
+    padding:14px 18px;
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    animation: fadeSuccess 4s ease forwards;
+
+    position: fixed;
+
+    top: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 9999;
+
+}
+
+@keyframes fadeSuccess {
+
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+/* ==========================================
+   RESPONSIVE (added — mobile adaptation)
+========================================== */
+@media (max-width:1024px){
+    .popular-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .result-list{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media (max-width:768px){
+    html{ zoom:100%; }
+
+    .dashboard{
+        flex-direction:column;
+        overflow:visible;
+        min-height:100dvh;
+    }
+
+    /* Sidebar becomes a horizontal scrollable top bar on mobile
+       so nothing needs to change in the HTML/JS toggle logic */
+    .sidebar,
+    .sidebar.collapsed{
+        position:relative;
+        top:0;
+        left:0;
+        bottom:auto;
+        width:100%;
+        height:auto;
+        border-radius:0 0 20px 20px;
+        flex-direction:row;
+        align-items:center;
+        overflow-x:auto;
+        overflow-y:hidden;
+        padding:10px 14px;
+    }
+
+    .sidebar-header{
+        display:none;
+    }
+
+    .sidebar-menu{
+        flex-direction:row;
+        gap:6px;
+        flex:none;
+    }
+
+    .sidebar.collapsed .menu-item{
+        justify-content:flex-start;
+        padding:10px 12px;
+        gap:12px;
+    }
+
+    .sidebar.collapsed .menu-item .label{
+        opacity:1;
+        width:auto;
+        pointer-events:auto;
+    }
+
+    .menu-item{
+        white-space:nowrap;
+    }
+
+    .sidebar-divider{
+        display:none;
+    }
+
+    .sidebar-bottom{
+        flex-direction:row;
+        margin-top:0;
+        margin-left:6px;
+    }
+
+    .main-content,
+    .dashboard:has(.sidebar.collapsed) .main-content{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .popular-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:18px;
+    }
+
+    .food-card{
+        height:auto;
+    }
+
+    .result-list{
+        grid-template-columns:1fr;
+    }
+
+    .result-card{
+        padding:18px;
+        gap:14px;
+    }
+
+    .result-card img{
+        height:180px;
+    }
+
+    .info-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        width:100%;
+    }
+
+    .compare-btn{
+        margin-left:0;
+        width:100%;
+    }
+
+    .filter-panel{
+        width:calc(100% - 32px);
+        right:-100%;
+    }
+
+    .filter-panel.show{
+        right:16px;
+    }
+
+    .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .welcome-section h2{
+        font-size:24px;
+    }
+}
+
+@media (max-width:480px){
+    .popular-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        height:46px;
+    }
+
+    .filter-group h4{
+        font-size:18px;
+    }
+}
+
+/* ==========================================
+   FIX: .main-content had overflow-y:auto but no
+   bounded height, so it never actually scrolled
+   itself — the whole page scrolled instead, which
+   is why position:sticky was not sticking to
+   anything. Giving it a real height makes it an
+   actual internal scroll container (desktop only,
+   so the mobile layout above is untouched).
+========================================== */
+@media (min-width:769px){
+    html, body{
+        height:100%;
+    }
+
+    .dashboard{
+        height:100vh;
+    }
+}

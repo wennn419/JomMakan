@@ -1,0 +1,223 @@
+/* ===== Page ===== */
+
+body {
+    background: #f8f8f8;
+}
+
+h1 {
+    text-align: center;
+    margin: 40px 0;
+    color: #333;
+}
+
+.favourite-count{
+    text-align:center;
+    margin-top:-15px;
+    margin-bottom:35px;
+    color:#777;
+    font-size:1rem;
+}
+
+.favourite-count strong{
+    color:#7B61C9;
+}
+
+/* ===== Favourite List ===== */
+
+.food-grid {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== Favourite Card ===== */
+
+.result-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.result-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 14px;
+    flex-shrink: 0;
+}
+
+/* ===== Card Content ===== */
+
+.result-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.result-info h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #222;
+}
+
+.result-info p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+.info-bottom{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-top:15px;
+}
+
+.price{
+    margin:0;
+    font-weight:600;
+    color:#555;
+}
+
+.compare-btn {
+    background: #7B61C9;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.2s ease;
+}
+
+.compare-btn:hover {
+    background: #684bb5;
+}
+
+/* ===== Empty State ===== */
+
+.empty-state{
+    margin-top:100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.empty-icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.empty-state h2{
+    margin-bottom:10px;
+    font-size:2rem;
+}
+
+.empty-state p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.explore-btn{
+    background:#7B61C9;
+    color:white;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.explore-btn:hover{
+    background:#684bb5;
+}
+
+/* remove favourite */
+.remove-btn{
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.remove-btn img{
+    width:24px;
+    height:auto;
+    display:block;
+}
+
+.remove-btn:hover img{
+    transform:scale(1.15);
+    opacity:.8;
+}
+
+.card-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:12px;
+}
+
+.remove-form{
+    margin:0;
+}
+/* ==========================================
+   RESPONSIVE (added — mobile adaptation)
+========================================== */
+@media (max-width:768px){
+    h1{
+        margin:24px 0;
+        font-size:26px;
+    }
+
+    .food-grid{
+        width:94%;
+    }
+
+    .result-card{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:14px;
+        gap:14px;
+    }
+
+    .result-card img{
+        width:100%;
+        height:180px;
+    }
+
+    .info-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        width:100%;
+    }
+
+    .card-actions{
+        width:100%;
+        justify-content:space-between;
+    }
+
+    .compare-btn{
+        width:100%;
+    }
+}

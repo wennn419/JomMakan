@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(135deg,#f8f4ec,#fffdf8);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
+}
+
+.container{
+
+    text-align:center;
+
+}
+
+.loader{
+
+    width:80px;
+
+    height:80px;
+
+    border:8px solid #eee;
+
+    border-top:8px solid #C89A4B;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    100%{
+        transform:rotate(360deg);
+    }
+
+}
+
+h2{
+
+    margin-top:30px;
+
+    color:#3a3128;
+
+}
+
+p{
+
+    margin-top:10px;
+
+    color:#777;
+
+}
+
+.dot{
+
+    animation:blink 1.5s infinite;
+
+}
+
+.dot:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.dot:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+@keyframes blink{
+
+    0%,80%,100%{
+        opacity:0;
+    }
+
+    40%{
+        opacity:1;
+    }
+
+}
+/* ==========================================
+   RESPONSIVE (added — mobile adaptation)
+========================================== */
+@media (max-width:480px){
+    .container{
+        padding:0 24px;
+    }
+
+    .loader{
+        width:60px;
+        height:60px;
+        border-width:6px;
+    }
+
+    h2{
+        font-size:18px;
+    }
+
+    p{
+        font-size:14px;
+    }
+}
