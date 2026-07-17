@@ -8,7 +8,7 @@
 
 }
 
-html {  
+html {   
         
     zoom:90%; 
     
@@ -1305,6 +1305,6 @@ input[type="number"] {
     }
 
     .dashboard{
-        height:100vh;
+        height:100%;
     }
 }
