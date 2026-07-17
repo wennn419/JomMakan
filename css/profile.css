@@ -161,3 +161,66 @@ body{
         gap:4px;
     }
 }
+
+/* ==========================================
+   RESPONSIVE (extra — added on top, nothing
+   above this line was changed)
+========================================== */
+
+/* tablet: smooth the jump between desktop sizing
+   and the 600px breakpoint above */
+@media (max-width:900px) and (min-width:601px){
+    .profile-header{
+        padding-top:48px;
+    }
+
+    .profile-avatar{
+        width:120px;
+        height:120px;
+        font-size:50px;
+    }
+
+    .profile-header h1{
+        font-size:32px;
+    }
+
+    .account-card{
+        max-width:600px;
+        margin:0 auto;
+        padding:28px;
+    }
+}
+
+/* small phones */
+@media (max-width:380px){
+    .profile-avatar{
+        width:90px;
+        height:90px;
+        font-size:38px;
+    }
+
+    .profile-header h1{
+        font-size:24px;
+    }
+
+    .profile-header p{
+        font-size:13px;
+    }
+
+    .account-card{
+        margin:18px 12px 0;
+        padding:16px;
+    }
+
+    .account-item{
+        padding:14px 0;
+    }
+
+    .account-item span{
+        font-size:13px;
+    }
+
+    .account-item strong{
+        font-size:15px;
+    }
+}
