@@ -330,7 +330,7 @@ while ($row = mysqli_fetch_assoc($popularResult)) {
 </a>
 
 <!-- Compare Prices -->
-<a href="compare.php" class="usp-item-link">
+<a href="compare_home.php" class="usp-item-link">
 
 <div class="usp-item">
 
