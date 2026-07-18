@@ -1,0 +1,376 @@
+
+
+/* ==========================================================
+   COMPARE HOME
+========================================================== */
+
+.compare-hero{
+
+    text-align:center;
+
+    padding:20px 20px 50px;
+
+}
+
+.hero-icon{
+
+    width:70px;
+    height:70px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#F5E7CC;
+
+}
+
+.hero-icon i{
+
+    font-size:28px;
+
+    color:#C89A4B;
+
+}
+
+.compare-hero h1{
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+
+}
+
+.compare-hero p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:#777;
+
+    line-height:1.8;
+
+}
+
+.popular-compare{
+
+    margin-top:20px;
+
+}
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+}
+
+.section-title i{
+
+    color:#C89A4B;
+
+    font-size:22px;
+
+}
+
+.section-title h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.compare-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.compare-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.compare-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.compare-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+.compare-content{
+
+    padding:25px;
+
+}
+
+.compare-content h3{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+.compare-content p{
+
+    color:#777;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+
+}
+
+.compare-btn{
+
+    display:block;
+
+    width:100%;
+
+    text-align:center;
+
+    background:#C89A4B;
+
+    color:white;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.compare-btn:hover{
+
+    background:#B78438;
+
+}
+
+.restaurant-count{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.restaurant-count i{
+
+    color:#C89A4B;
+
+}
+
+/* ==========================================================
+   EMPTY MESSAGE
+========================================================== */
+
+.empty-message{
+
+    grid-column:1 / -1;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:60px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.empty-message i{
+
+    font-size:40px;
+
+    color:#C89A4B;
+
+    margin-bottom:20px;
+
+}
+
+.empty-message p{
+
+    color:#777;
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   BROWSE BANNER
+========================================================== */
+
+.browse-banner{
+
+    margin-top:60px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.browse-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    background:#F3EDFF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+.browse-icon i{
+
+    font-size:24px;
+
+    color:#7B61C9;
+
+}
+
+.browse-content{
+
+    flex:1;
+
+}
+
+.browse-content h2{
+
+    font-size:22px;
+
+    margin-bottom:8px;
+
+}
+
+.browse-content p{
+
+    color:#777;
+
+    line-height:1.7;
+
+}
+
+.browse-button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#7B61C9;
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    transition:.25s;
+
+}
+
+.browse-button:hover{
+
+    background:#684EB5;
+
+}
+
+/* ==========================================================
+   PRICE RANGE
+========================================================== */
+
+.price-range{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.price-range i{
+
+    color:#C89A4B;
+
+}
