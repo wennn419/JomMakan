@@ -134,6 +134,11 @@ $currentPage = "surprise";
 
 </a>
 
+</div>
+
+    <!-- 装饰用,没有任何功能 -->
+    <div class="confetti-decoration"></div>
+
     </main>
 
 </div>

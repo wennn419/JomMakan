@@ -17,7 +17,7 @@ body{
 
 .header-left h1{
 
-    font-size:30px;
+    font-size:45px;
 
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
@@ -37,7 +37,7 @@ body{
 
     color:#6F6F6F;
 
-    font-size:16px;
+    font-size:18px;
 
     line-height:1.7;
 
@@ -748,4 +748,222 @@ body{
     .option-grid{
         grid-template-columns:1fr;
     }
+}
+
+/* ==========================================
+   VISUAL POLISH — make the two cards feel less
+   flat/identical (added on top, nothing above
+   this line was touched)
+========================================== */
+
+/* soft glow blobs behind the header, same trick
+   used on the homepage hero */
+body{
+    position:relative;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:-120px;
+    right:-100px;
+    width:380px;
+    height:380px;
+    background:rgba(255,220,120,.20);
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:0;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    top:220px;
+    left:35%;
+    width:260px;
+    height:260px;
+    background:rgba(140,107,234,.12);
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:0;
+    pointer-events:none;
+}
+
+.surprise-header,
+.surprise-options{
+    position:relative;
+    z-index:1;
+}
+
+/* give each card its own tinted gradient instead of
+   plain white, so the two options read as distinct */
+.surprise-card.personalized{
+    background:linear-gradient(160deg,#FFFDF7 0%,#FFFFFF 55%);
+    border-color:#EFE0BE;
+}
+
+.surprise-card.total{
+    background:linear-gradient(160deg,#FBF9FF 0%,#FFFFFF 55%);
+    border-color:#E3DAF7;
+}
+
+/* bigger, more prominent icon circles with a matching
+   soft-colored shadow underneath them */
+.card-icon{
+    width:64px;
+    height:64px;
+    font-size:26px;
+    box-shadow:0 10px 22px rgba(0,0,0,.06);
+}
+
+.card-icon.gold{
+    box-shadow:0 12px 24px rgba(200,138,45,.18);
+}
+
+.card-icon.purple{
+    box-shadow:0 12px 24px rgba(140,107,234,.18);
+}
+
+/* turn each checklist tick into a small colored badge
+   instead of a bare icon floating in front of the text */
+.feature-list li{
+    position:relative;
+    padding-left:34px;
+}
+
+.feature-list i{
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:22px;
+    height:22px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
+    background:#FDF3DE;
+}
+
+.total-list i{
+    background:#F2EDFF;
+}
+
+/* a bit more depth on the CTA buttons so they don't
+   sit totally flat on the card */
+.start-btn{
+    box-shadow:0 6px 16px rgba(0,0,0,.05);
+}
+
+.personalized .start-btn{
+    box-shadow:0 6px 16px rgba(191,145,101,.15);
+}
+
+.purple-btn{
+    box-shadow:0 6px 16px rgba(140,107,234,.15);
+}
+
+/* small hover treatment for the header's heart / bell icons */
+.header-right i{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.header-right i:hover{
+    background:#F5E7CC;
+}
+
+/* ==========================================
+   DECORATIVE CONFETTI + SPARKLE STRIP (added)
+   -----------------------------------------------------------
+   Pure decoration, no functionality — fills the empty space
+   below the two surprise cards with drifting colorful dots
+   and twinkling gold stars.
+ 
+   Needs one empty element in the HTML right after
+   .surprise-options closes:
+ 
+       <div class="confetti-decoration"></div>
+ 
+========================================== */
+.confetti-decoration{
+    position:relative;
+    height:200px;
+    margin:30px 0 10px;
+    overflow:hidden;
+    pointer-events:none; /* purely visual, never blocks clicks */
+}
+ 
+/* colorful confetti dots — five layers at different tile
+   sizes/offsets so it doesn't read as one obvious repeating
+   grid pattern */
+.confetti-decoration::before{
+    content:"";
+    position:absolute;
+    inset:0;
+ 
+    background-image:
+        radial-gradient(circle, #D08B28 4px, transparent 4px),
+        radial-gradient(circle, #8C6BEA 4px, transparent 4px),
+        radial-gradient(circle, #4B9E6B 3px, transparent 3px),
+        radial-gradient(circle, #E0637A 3px, transparent 3px),
+        radial-gradient(circle, #3E8FD0 3px, transparent 3px);
+ 
+    background-size:
+        160px 160px,
+        190px 190px,
+        130px 130px,
+        210px 210px,
+        170px 170px;
+ 
+    background-position:
+        5% 30%,
+        70% 65%,
+        25% 75%,
+        85% 15%,
+        45% 40%;
+ 
+    background-repeat:no-repeat;
+    opacity:.55;
+ 
+    animation: confettiDrift 8s ease-in-out infinite alternate;
+}
+ 
+/* scattered gold sparkle stars, using text characters so no
+   extra markup/images are needed */
+.confetti-decoration::after{
+    content:"✦   ✧      ✦      ✧   ✦      ✧   ✦      ✧   ✦";
+    position:absolute;
+    inset:0;
+ 
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    flex-wrap:wrap;
+ 
+    font-size:22px;
+    color:#D3A046;
+    opacity:.6;
+ 
+    animation: sparkleTwinkle 2.4s ease-in-out infinite;
+}
+ 
+@keyframes confettiDrift{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(-10px); }
+}
+ 
+@keyframes sparkleTwinkle{
+    0%,100%{ opacity:.35; }
+    50%{ opacity:.75; }
 }
