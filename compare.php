@@ -80,7 +80,6 @@ foreach ($foods as $food) {
 
         <div class="sidebar-header">
             <div class="logo">
-                <i class="fa-solid fa-bowl-rice" style="font-size:22px; color:#C88A2D; flex-shrink:0;"></i>
                 <span class="logo-text">JomMakan</span>
             </div>
             <button id="toggle-btn" title="Toggle sidebar">
@@ -137,13 +136,9 @@ foreach ($foods as $food) {
 
 <!-- Back Button -->
 <?php if ($from === 'compare_home'): ?>
-    <a href="compare_home.php" class="back-btn">
-        ← Back
-    </a>
+    <a href="compare_home.php" class="back-btn">← Back</a>
 <?php else: ?>
-    <a href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>" class="back-btn">
-        ← Back
-    </a>
+    <a href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>" class="back-btn">← Back</a>
 <?php endif; ?>
 
     <h1><?= htmlspecialchars($foods[0]['food_name']) ?></h1>
