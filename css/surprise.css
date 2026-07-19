@@ -763,34 +763,6 @@ body{
     overflow-x:hidden;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    top:-120px;
-    right:-100px;
-    width:380px;
-    height:380px;
-    background:rgba(255,220,120,.20);
-    border-radius:50%;
-    filter:blur(90px);
-    z-index:0;
-    pointer-events:none;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    top:220px;
-    left:35%;
-    width:260px;
-    height:260px;
-    background:rgba(140,107,234,.12);
-    border-radius:50%;
-    filter:blur(80px);
-    z-index:0;
-    pointer-events:none;
-}
-
 .surprise-header,
 .surprise-options{
     position:relative;
@@ -898,7 +870,7 @@ body::after{
 ========================================== */
 .confetti-decoration{
     position:relative;
-    height:200px;
+    height:90px;
     margin:30px 0 10px;
     overflow:hidden;
     pointer-events:none; /* purely visual, never blocks clicks */

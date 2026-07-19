@@ -39,9 +39,9 @@
 
 .compare-hero h1{
 
-    font-size:38px;
+    font-size:34px;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 
     font-weight:700;
 
@@ -52,6 +52,8 @@
     max-width:650px;
 
     margin:auto;
+
+    font-size:17px;
 
     color:#777;
 
@@ -73,7 +75,9 @@
 
     gap:12px;
 
-    margin-bottom:30px;
+    margin-bottom:20px;
+
+    justify-content:flex-start;
 
 }
 
@@ -169,7 +173,7 @@
 
     color:white;
 
-    padding:13px;
+    padding:11px;
 
     border-radius:12px;
 
@@ -177,6 +181,7 @@
 
     transition:.25s;
 
+    text-decoration:none;
 }
 
 .compare-btn:hover{
@@ -372,5 +377,15 @@
 .price-range i{
 
     color:#C89A4B;
+
+}
+
+.compare-page{
+
+    max-width:1350px;
+
+    margin:auto;
+
+    padding:40px;
 
 }

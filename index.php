@@ -147,7 +147,7 @@ while ($row = mysqli_fetch_assoc($popularResult)) {
         <input
             type="text"
             name="keyword"
-            placeholder="Search meals within your budget..."
+            placeholder="Search meals."
         >
 
     </div>
@@ -172,11 +172,7 @@ while ($row = mysqli_fetch_assoc($popularResult)) {
 
             <span class="dot">•</span>
 
-            <a href="#">Milk Tea</a>
-
-            <span class="dot">•</span>
-
-            <a href="#">Burger</a>
+            <a href="#">Pizza</a>
 
         </div>
 
@@ -365,7 +361,13 @@ while ($row = mysqli_fetch_assoc($popularResult)) {
 
         <h2>Popular Today</h2>
 
-        <a href="search.php">See All</a>
+        <a href="search.php" class="see-all-btn">
+
+        See All
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
 
     </div>
 

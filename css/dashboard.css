@@ -1333,7 +1333,7 @@ input[type="number"] {
    rest of the site in whichever browser you're testing in.
 ========================================================== */
 .main-content{
-    zoom:75%;
+    zoom:80%;
     margin-left:389.33px; /* 292px ÷ 0.75 → renders back to 292px after the zoom */
 }
 

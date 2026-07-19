@@ -4,7 +4,6 @@
 
         <div class="sidebar-header">
             <div class="logo">
-                <i class="fa-solid fa-bowl-rice" style="font-size:22px; color:#C88A2D; flex-shrink:0;"></i>
                 <span class="logo-text">JomMakan</span>
             </div>
             <button id="toggle-btn" title="Toggle sidebar">

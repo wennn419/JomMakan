@@ -651,6 +651,32 @@ FOOTER
 
 }
 
+.section-title .see-all-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    color:#C89A4B;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.section-title .see-all-btn:hover{
+
+    color:#B88437;
+
+    transform:translateX(4px);
+
+}
+
 .card-container{
 
     display:grid;

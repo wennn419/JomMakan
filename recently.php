@@ -109,7 +109,7 @@ $result = $conn->query($sql);
         class="compare-btn"
         onclick="window.location.href='food.php?id=<?= $row['id'] ?>&from=recently'">
 
-        View Details →
+        View Details
 
     </button>
 
