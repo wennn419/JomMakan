@@ -149,7 +149,16 @@ $relatedFoods = $stmt->get_result();
 
     <div class="food-image">
 
-<a href="<?= htmlspecialchars($from) ?>.php" class="back-button">
+<?php
+if ($from == "compare") {
+    $backLink = "compare.php?group=" . urlencode($_GET['group']) .
+                "&id=" . (int)$_GET['food'];
+} else {
+    $backLink = $from . ".php";
+}
+?>
+
+<a href="<?= htmlspecialchars($backLink) ?>" class="back-button">
     <i class="fa-solid fa-arrow-left"></i>
 </a>
 
