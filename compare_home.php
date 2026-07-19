@@ -180,7 +180,7 @@ rel="stylesheet">
 
             <a
             href="compare.php?group=<?= urlencode($dish['compare_group']) ?>&from=compare_home"
-            class="compare-btn">
+            class="compare-btn">">
 
                 Compare Now
 
