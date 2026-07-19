@@ -220,8 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 </label>
 
-                <a href="#">Forgot Password?</a>
-
             </div>
 
             <button type="submit">
