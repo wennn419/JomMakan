@@ -81,10 +81,6 @@ rel="stylesheet">
 
 <body>
 
-<div class="dashboard">
-
-<?php include "includes/sidebar.php"; ?>
-
 <main class="main-content">
 
 <!-- ==========================================================
@@ -179,7 +175,8 @@ rel="stylesheet">
             <!-- Compare Button  -->
 
             <a
-            href="compare.php?group=<?= urlencode($dish['compare_group']) ?>&from=compare_home">
+            href="compare.php?group=<?= urlencode($dish['compare_group']) ?>&from=compare_home"
+            class="compare-btn">
 
                 Compare Now
 
@@ -252,8 +249,6 @@ rel="stylesheet">
 </section>
 
 </main>
-
-</div>
 
 </body>
 
