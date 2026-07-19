@@ -179,7 +179,7 @@ rel="stylesheet">
             <!-- Compare Button  -->
 
             <a
-            href="compare.php?group=<?= urlencode($dish['compare_group']) ?>"
+            href="compare.php?group=<?= urlencode($dish['compare_group']) ?>&from=compare_home"
             class="compare-btn">
 
                 Compare Now

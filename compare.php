@@ -136,12 +136,15 @@ foreach ($foods as $food) {
   <section class="compare-header">
 
 <!-- Back Button -->
-    <a
-    href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>"
-    class="back-btn"
->
-    ← Back
-</a>
+<?php if ($from === 'compare_home'): ?>
+    <a href="compare_home.php" class="back-btn">
+        ← Back
+    </a>
+<?php else: ?>
+    <a href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>" class="back-btn">
+        ← Back
+    </a>
+<?php endif; ?>
 
     <h1><?= htmlspecialchars($foods[0]['food_name']) ?></h1>
 
