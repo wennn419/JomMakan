@@ -18,8 +18,12 @@ foodCards.forEach(card => {
     card.addEventListener("click", () => {
 
         const foodId = card.dataset.id;
+        const mode = card.dataset.mode;
 
-        window.location.href = "food.php?id=" + foodId;
+        window.location.href =
+            "food.php?id=" + foodId +
+            "&from=result" +
+            "&mode=" + mode;
 
     });
 

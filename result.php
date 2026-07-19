@@ -213,6 +213,7 @@ if($result->num_rows > 0){
 <div
     class="food-card reveal-card"
     data-id="<?php echo $food['id']; ?>"
+    data-mode="<?php echo htmlspecialchars($mode); ?>"
 >
 
     <img

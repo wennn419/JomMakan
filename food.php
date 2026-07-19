@@ -151,12 +151,28 @@ $relatedFoods = $stmt->get_result();
 
 <?php
 if ($from == "compare") {
+
     $origin = $_GET['origin'] ?? 'search';
-    $backLink = "compare.php?group=" . urlencode($_GET['group']) .
-                "&id=" . (int)($_GET['food'] ?? 0) .
-                "&from=" . urlencode($origin);
-} else {
+
+    $backLink =
+        "compare.php?group=" . urlencode($_GET['group']) .
+        "&id=" . (int)($_GET['food'] ?? 0) .
+        "&from=" . urlencode($origin);
+
+}
+
+elseif ($from == "result") {
+
+    $mode = $_GET['mode'] ?? 'personalized';
+
+    $backLink = "result.php?mode=" . urlencode($mode);
+
+}
+
+else {
+
     $backLink = $from . ".php";
+
 }
 ?>
 
