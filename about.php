@@ -63,10 +63,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
             <h2>JomMakan</h2>
 
             <p>
-                JomMakan is a food recommendation web application
-                that helps users discover delicious meals quickly,
-                compare prices, and find restaurants that match
-                their preferences.
+                JomMakan is a food recommendation web application that helps users discover delicious meals quickly, compare prices, and find restaurants that match their preferences.
             </p>
 
         </div>
