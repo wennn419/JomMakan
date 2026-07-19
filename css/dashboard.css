@@ -381,27 +381,19 @@ body {
 }
 
 .result-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
 
     display:flex;
-
     flex-direction:column;
 
-    align-items:stretch;
+    height:320px;
+    transition:.25s;
 
-    padding:18px;
-
-    min-height:320;
-
-    gap:10px;
-
-    background:#fff;
-
-    border-radius:20px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
-
-    cursor:pointer;
-
+    text-decoration:none;
+    color:inherit;
 }
 
 .result-card:hover{
