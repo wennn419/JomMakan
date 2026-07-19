@@ -10,6 +10,9 @@ $userId = $_SESSION["user_id"] ?? null;
 
 $from = $_GET['from'] ?? 'search';
 
+var_dump($from);
+exit;
+
 if (!isset($_GET['id'])) {
     die("Food ID not found.");
 }
