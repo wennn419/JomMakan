@@ -8,7 +8,7 @@ include "db_connect.php";
 
 $userId = $_SESSION["user_id"] ?? null;
 
-$from = $_GET['from'] ?? 'search';
+$from = trim($_GET['from'] ?? 'search');
 
 var_dump($from);
 exit;

@@ -249,12 +249,8 @@ foreach ($foods as $food) {
         RM <?= number_format($food['price'],2) ?>
     </h3>
 
-    <a href="food.php?id=<?= $food['id'] ?>
-    &from=compare
-    &group=<?= urlencode($compareGroup) ?>
-    &food=<?= $foodId ?>"
-    class="view-btn">
-        View Details
+    <a href="food.php?id=<?= $food['id'] ?>&from=compare&group=<?= urlencode($compareGroup) ?>&food=<?= $foodId ?>" class="view-btn">
+    View Details
     </a>
 
 </div>
