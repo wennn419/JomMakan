@@ -121,11 +121,8 @@ LIMIT 4
 
 $stmt = $conn->prepare($relatedSql);
 $stmt->bind_param("ii", $restaurantId, $currentFoodId);
-if ($stmt->execute()) {
-    die("Insert Success");
-} else {
-    die($stmt->error);
-}
+$stmt->execute();
+
 $relatedFoods = $stmt->get_result();
 ?>
 
