@@ -5,6 +5,8 @@ include "db_connect.php";
 
 $currentPage = 'recently';
 
+$userId = $_SESSION["user_id"];
+
 $sql = "
 SELECT
     foods.*,
@@ -16,11 +18,15 @@ JOIN foods
     ON recently_viewed.food_id = foods.id
 JOIN restaurants
     ON foods.restaurant_id = restaurants.id
+WHERE recently_viewed.user_id = ?
 GROUP BY foods.id
 ORDER BY viewed_at DESC
 ";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
 
