@@ -81,7 +81,7 @@ rel="stylesheet">
 
 <body>
 
-<main class="main-content">
+<main class="main-content compare-page">
 
 <!-- ==========================================================
      HERO SECTION
