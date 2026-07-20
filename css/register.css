@@ -29,13 +29,18 @@ body{
 
     margin-bottom:30px;
 
+}
+
+.logo a{
+
+    text-decoration:none;
+
     font-size:48px;
 
     font-weight:bold;
 
     color:#3A241D;
 
-    font-style:italic;
 
 }
 

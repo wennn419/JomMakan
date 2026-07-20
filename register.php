@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="background">
 
     <div class="logo">
-        JomMakan
+        <a href="home.php">JomMakan</a>
     </div>
 
     <div class="register-card">
