@@ -80,6 +80,7 @@ foreach ($foods as $food) {
 
         <div class="sidebar-header">
             <div class="logo">
+                <i class="fa-solid fa-bowl-rice" style="font-size:22px; color:#C88A2D; flex-shrink:0;"></i>
                 <span class="logo-text">JomMakan</span>
             </div>
             <button id="toggle-btn" title="Toggle sidebar">
@@ -135,11 +136,12 @@ foreach ($foods as $food) {
   <section class="compare-header">
 
 <!-- Back Button -->
-<?php if ($from === 'compare_home'): ?>
-    <a href="compare_home.php" class="back-btn">← Back</a>
-<?php else: ?>
-    <a href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>" class="back-btn">← Back</a>
-<?php endif; ?>
+    <a
+    href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>"
+    class="back-btn"
+>
+    ← Back
+</a>
 
     <h1><?= htmlspecialchars($foods[0]['food_name']) ?></h1>
 
@@ -200,58 +202,59 @@ foreach ($foods as $food) {
 
 <?php foreach($foods as $food): ?>
 
-<div
-    class="compare-card"
+<div class="compare-card"
     data-price="<?= $food['price'] ?>"
     data-rating="<?= $food['rating'] ?>"
     data-name="<?= strtolower($food['restaurant_name']) ?>"
 >
 
-<?php if ($food['price'] == $lowestPrice): ?>
-
-    <div class="badge">
-    🥇 Best Budget
-    </div>
-
-<?php endif; ?>
-
-<?php if ($food['rating'] == $highestRating): ?>
-
-    <div class="badge">
-    ⭐ Highest Rated
-    </div>
-
-<?php endif; ?>
-
     <div class="restaurant-info">
 
-    <h2><?= htmlspecialchars($food['restaurant_name']) ?></h2>
+        <?php if ($food['price'] == $lowestPrice && $food['rating'] == $highestRating): ?>
 
-    <p class="food-name">
-    <?= htmlspecialchars($food['food_name']) ?>
-    </p>
+    <div class="badge">
+        🏆 Best Budget • Highest Rated
+    </div>
 
-    <p class="rating">
-    ⭐ <?= htmlspecialchars($food['rating']) ?>
-    </p>
+    <?php elseif ($food['price'] == $lowestPrice): ?>
 
-<p class="location">
-    📍 Mount Austin
-</p>
+    <div class="badge">
+        🥇 Best Budget
+    </div>
+
+    <?php elseif ($food['rating'] == $highestRating): ?>
+
+    <div class="badge">
+        ⭐ Highest Rated
+    </div>
+
+    <?php endif; ?>
+
+        <h2><?= htmlspecialchars($food['restaurant_name']) ?></h2>
+
+        <p class="food-name">
+            <?= htmlspecialchars($food['food_name']) ?>
+        </p>
+
+        <p class="rating">
+            ⭐ <?= htmlspecialchars($food['rating']) ?>
+        </p>
+
+        <p class="location">
+            📍 Mount Austin
+        </p>
 
     </div>
 
-<div class="price-info">
+    <div class="price-info">
 
-    <h3>
-        RM <?= number_format($food['price'],2) ?>
-    </h3>
+        <h3>RM <?= number_format($food['price'],2) ?></h3>
 
-    <a href="food.php?id=<?= $food['id'] ?>&from=compare&group=<?= urlencode($compareGroup) ?>&origin=<?= urlencode($from) ?>&food=<?= $foodId ?>" class="view-btn">
-    View Details
-    </a>
+        <a href="food.php?id=<?= $food['id'] ?>&from=compare&group=<?= urlencode($compareGroup) ?>" class="view-btn">
+            View Details
+        </a>
 
-</div>
+    </div>
 
 </div>
 <?php endforeach; ?>
