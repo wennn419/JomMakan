@@ -167,7 +167,7 @@ foreach ($foods as $food) {
 
 </section>
 
-// Only display the comparison section if more than one restaurant offers this food.
+ <!-- Only display the comparison section if more than one restaurant offers this food. -->
 <?php if (count($foods) > 1): ?>
 <section class="compare-summary">
 
