@@ -133,6 +133,8 @@
 
     height:200px;
 
+    /* It keeps the image proportion while filling the image container. 
+    If necessary, the image is cropped instead of stretched. */
     object-fit:cover;
 
 }
@@ -218,6 +220,7 @@
 
 .empty-message{
 
+    /* It makes the element span across all columns of the grid layout. */
     grid-column:1 / -1;
 
     background:white;
@@ -290,6 +293,8 @@
 
     justify-content:center;
 
+    /* It prevents the icon from shrinking 
+    when there isn't enough space in the flex container. */
     flex-shrink:0;
 
 }
@@ -342,6 +347,7 @@
 
     font-weight:600;
 
+    /* It prevents the text from wrapping onto the next line. */
     white-space:nowrap;
 
     transition:.25s;

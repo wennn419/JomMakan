@@ -2,18 +2,21 @@
    COMPARE PAGE
    JomMakan
 ========================================== */
-
-
 *{
     margin:0;
+
     padding:0;
+
+    /* Include padding and border within the element's total size */
     box-sizing:border-box;
 }
 
 .compare-page{
 
+    /* Make the container fill the available width */
+    /* 100px is a fixed width, 
+    while 100% is a relative width based on the parent element. */
     width:100%;
-
 }
 
 /* ==========================================
@@ -92,6 +95,7 @@
 
     display:grid;
 
+    /* Create three equal-width columns */
     grid-template-columns:repeat(3,1fr);
 
     gap:22px;
@@ -106,17 +110,24 @@
 
     border-radius:22px;
 
+    /* Top & Bottom ; Left & Right */
     padding:16px 22px;
 
+    /* Add a soft shadow for a subtle elevation effect */
+    /* Horizontal Offset ; Vertical Offset ; Blur Radius */
     box-shadow:0 8px 25px rgba(0,0,0,.05);
 
+    /* Apply a smooth transition for hover effects */
     transition:.3s;
 
+    /* Keep the default cursor since the card is not clickable */
     cursor:default;
 }
 
+/* Apply hover effects when the mouse is over the card */
 .summary-card:hover{
 
+    /* Move the card slightly upward on hover */
     transform:translateY(-5px);
 
     box-shadow:0 18px 35px rgba(0,0,0,.08);
@@ -199,9 +210,8 @@
 
 .compare-card.best{
 
+    /* Highlight the best card with a gold border */
     border:2px solid #F3D28C;
-
-    position:relative;
 
     overflow:hidden;
 
@@ -215,6 +225,7 @@
 
 .badge{
 
+    /* Keep the badge only as wide as its content while using Flexbox */
     display:inline-flex;
 
     align-items:center;

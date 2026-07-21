@@ -9,15 +9,6 @@ include "db_connect.php";
    restaurant so users can actually compare prices.
    ========================================================== */
 
-
-
-/* ==========================================================
-   GET POPULAR COMPARE DISHES
-   ----------------------------------------------------------
-   Retrieve compare groups with restaurant count and
-   price range.
-   ========================================================== */
-
 $sql = "
 
 SELECT
@@ -49,6 +40,8 @@ LIMIT 6
 
 ";
 
+// They are called parameters (or arguments). 
+// They provide the information that a function needs in order to perform its task.
 $result = mysqli_query($conn,$sql);
 
 $currentPage = "compare";
@@ -87,6 +80,9 @@ rel="stylesheet">
      HERO SECTION
 =========================================================== -->
 
+<!-- "Hero" is a common web design term for the main section at the top of a webpage. 
+ It usually contains the main heading and a short introduction to attract the user's attention. 
+ It is a naming convention, not a special HTML element. -->
 <section class="compare-hero">
 
     <h1>Compare Prices</h1>
@@ -116,11 +112,15 @@ rel="stylesheet">
 
     <div class="compare-grid">
 
-<?php if(mysqli_num_rows($result) > 0): ?>
+        <?php if(mysqli_num_rows($result) > 0): ?>
 
-    <?php while($dish = mysqli_fetch_assoc($result)): ?>
+        <!-- mysqli_fetch_assoc() retrieves one row from the query result as an associative array. 
+         The row is stored in the $dish variable. 
+         The while loop repeats this process until there are no more rows, 
+         allowing all records from the database to be displayed. -->
+        <?php while($dish = mysqli_fetch_assoc($result)): ?>
 
-    <div class="compare-card">
+        <div class="compare-card">
 
         <!-- Food Image -->
 
@@ -140,7 +140,7 @@ rel="stylesheet">
 
             <!-- Restaurant Count -->
 
-            <div class="restaurant-count">
+        <div class="restaurant-count">
 
                 <i class="fa-solid fa-store"></i>
 
@@ -152,15 +152,15 @@ rel="stylesheet">
 
                 </span>
 
-            </div>
+        </div>
 
-<!-- Price Range -->
+        <!-- Price Range -->
 
-<div class="price-range">
+        <div class="price-range">
 
-    <i class="fa-solid fa-tag"></i>
+        <i class="fa-solid fa-tag"></i>
 
-    <span>
+        <span>
 
         RM <?= number_format($dish['lowest_price'],2) ?>
 
@@ -168,12 +168,11 @@ rel="stylesheet">
 
         RM <?= number_format($dish['highest_price'],2) ?>
 
-    </span>
+        </span>
 
-</div>
+        </div>
 
             <!-- Compare Button  -->
-
             <a
             href="compare.php?group=<?= urlencode($dish['compare_group']) ?>&from=compare_home"
             class="compare-btn">
@@ -188,7 +187,7 @@ rel="stylesheet">
 
     </div>
 
-    <?php endwhile; ?>
+<?php endwhile; ?>
 
 <?php else: ?>
 

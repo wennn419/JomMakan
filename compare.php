@@ -22,36 +22,52 @@ ON foods.restaurant_id = restaurants.id
 WHERE foods.compare_group = ?
 ";
 
+// prepare() is used to prepare the SQL statement before execution. 
+// It allows values to be added later using placeholders (?), 
+// making the query safer and helping prevent SQL Injection.
 $stmt = $conn->prepare($sql);
 
+// bind_param() is used to bind actual values to the placeholder (?) 
+// in the prepared SQL statement before execution.
 $stmt->bind_param("s", $compareGroup);
 
 $stmt->execute();
 
+// get_result() retrieves the query result from the database and 
+// stores it in the $result variable for further processing.
 $result = $stmt->get_result();
 
+// Create an empty array to store all food records
 $foods = [];
 
+// Retrieve each row from the query result
 while($row = $result->fetch_assoc()){
 
+    // Add each food record into the array
     $foods[] = $row;
 
 }
 
+// Initialize the lowest price (no value yet)
 $lowestPrice = null;
 
+// Loop through every food record
 foreach ($foods as $food) {
 
+    // Update the lowest price if the current food is cheaper
     if ($lowestPrice === null || $food['price'] < $lowestPrice) {
         $lowestPrice = $food['price'];
     }
 
 }
 
+// Initialize the highest rating (no value yet)
 $highestRating = null;
 
+// Loop through every food record
 foreach ($foods as $food) {
 
+    // Update the highest rating if the current food has a higher rating
     if ($highestRating === null || $food['rating'] > $highestRating) {
         $highestRating = $food['rating'];
     }
@@ -129,28 +145,29 @@ foreach ($foods as $food) {
 
     </aside>
 
-   <main class="main-content">
+<main class="main-content">
 
-    <!-- Food Title -->
+<!-- Food Title -->
+<section class="compare-header">
 
-  <section class="compare-header">
-
-<!-- Back Button -->
+    <!-- Back button to return to the selected food page -->
     <a
     href="food.php?id=<?= $foodId ?>&from=<?= urlencode($from) ?>"
     class="back-btn"
 >
     ← Back
-</a>
+    </a>
 
+    <!-- Safely display the food name -->
     <h1><?= htmlspecialchars($foods[0]['food_name']) ?></h1>
 
-<p>
-    Found <?= count($foods) ?> restaurants offering similar dishes.
-</p>
+    <p>
+        Found <?= count($foods) ?> restaurants offering similar dishes.
+    </p>
 
 </section>
 
+// Only display the comparison section if more than one restaurant offers this food.
 <?php if (count($foods) > 1): ?>
 <section class="compare-summary">
 
@@ -192,25 +209,27 @@ foreach ($foods as $food) {
         A - Z
     </button>
 
-</div>
+    </div>
 
     <!-- Restaurant List -->
 
     <section class="compare-list">
 
-        <!-- Card 1 -->
+    <!-- Loop through each restaurant offering the selected food -->
+    <?php foreach($foods as $food): ?>
 
-<?php foreach($foods as $food): ?>
-
-<div class="compare-card"
+    <!-- Store price for JavaScript -->
+    <!-- Store lowercase restaurant name for alphabetical sorting -->
+    <div class="compare-card" 
     data-price="<?= $food['price'] ?>"
     data-rating="<?= $food['rating'] ?>"
     data-name="<?= strtolower($food['restaurant_name']) ?>"
->
+    >
 
     <div class="restaurant-info">
 
-        <?php if ($food['price'] == $lowestPrice && $food['rating'] == $highestRating): ?>
+    <!-- Display a badge if the restaurant has both the lowest price and highest rating -->
+    <?php if ($food['price'] == $lowestPrice && $food['rating'] == $highestRating): ?>
 
     <div class="badge">
         🏆 Best Budget • Highest Rated
@@ -257,10 +276,10 @@ foreach ($foods as $food) {
     </div>
 
 </div>
+
 <?php endforeach; ?>
 
-
-    </section>
+</section>
 
 </main>
 

@@ -266,7 +266,7 @@ body{
         font-size:15px;
         max-width:100%;
     }
-
+    
     .about-card{
         flex-direction:column;
         align-items:flex-start;
@@ -274,6 +274,9 @@ body{
         gap:18px;
     }
 
+    /* The first rule defines the default style for desktop screens. 
+    The second rule is inside a media query, 
+    so it overrides the default style on smaller screens to make the layout responsive. */
     .about-logo{
         width:80px;
         height:80px;
