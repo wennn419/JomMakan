@@ -1293,44 +1293,11 @@ input[type="number"] {
    so the mobile layout above is untouched).
 ========================================== */
 @media (min-width:769px){
-    .main-content{
-        zoom:80%;
-        margin-left:389.33px;
+    html, body{
+        height:100%;
     }
 
-    .dashboard:has(.sidebar.collapsed) .main-content{
-        margin-left:128px;
+    .dashboard{
+        height:100%;
     }
-}
-/* ==========================================================
-   SCALE .main-content TO 75% WHILE KEEPING THE SIDEBAR
-   AT ITS ORIGINAL SIZE (added)
-   -----------------------------------------------------------
-   `zoom` shrinks the element it's set on AND everything
-   inside it, but it does NOT affect siblings — so putting
-   zoom only on .main-content shrinks all the cards/text/
-   results down to 75%, while .sidebar (a sibling, not a
-   descendant of .main-content) stays completely untouched.
-
-   One side-effect: zoom also shrinks the element's OWN box,
-   including its margin. So margin-left:292px would render
-   as 292 * 0.75 = 219px on screen — not enough space, and
-   it would overlap the sidebar. To cancel that out, the
-   margin-left values below are pre-inflated by ÷ 0.75, so
-   after being shrunk back down by the zoom they land back
-   on the original 292px / 96px gap.
-
-   NOTE: `zoom` is a non-standard property (Chrome/Edge/
-   Safari support it, Firefox historically didn't) — same
-   as the `zoom:90%` already used on <html> elsewhere in
-   this project, so it should behave consistently with the
-   rest of the site in whichever browser you're testing in.
-========================================================== */
-.main-content{
-    zoom:80%;
-    margin-left:389.33px; /* 292px ÷ 0.75 → renders back to 292px after the zoom */
-}
-
-.dashboard:has(.sidebar.collapsed) .main-content{
-    margin-left:128px; /* 96px ÷ 0.75 → renders back to 96px after the zoom */
 }
