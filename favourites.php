@@ -1,13 +1,17 @@
 <?php
 require_once "includes/auth.php";
 include "db_connect.php";
+
+// Get the currently logged-in user's ID from the session
 $userId = $_SESSION["user_id"];
 
-// Remove favourite
+// Check if the remove favourite form has been submitted
 if (isset($_POST['removeFavourite'])) {
 
+    // Convert the submitted food ID to an integer
     $foodId = (int)$_POST['food_id'];
 
+    // Delete only the selected food from the logged-in user's favourites
     $sql = "DELETE FROM favourites
         WHERE food_id = ?
         AND user_id = ?";
@@ -17,14 +21,16 @@ if (isset($_POST['removeFavourite'])) {
     $stmt->execute();
 
     header("Location: favourites.php");
+    // Stop executing the script after redirecting
     exit();
 }
 
 $currentPage = 'favourites';
 
+// Rename favourites.id to favourite_id to avoid column name conflicts
 $sql = "
 SELECT
-    favourites.id AS favourite_id,
+    favourites.id AS favourite_id, 
     foods.id,
     foods.food_name,
     foods.price,
@@ -39,17 +45,16 @@ JOIN restaurants
 WHERE favourites.user_id = ?
 ORDER BY favourites.created_at DESC
 ";
+// Retrieve only the favourite records of the current user
+// Display the most recently added favourites first
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $userId);
 $stmt->execute();
 
+// Retrieve the query result set after executing the SQL statement
 $result = $stmt->get_result();
 
-?>
-
-<?php
-$currentPage = 'favourites';
 ?>
 
 <!DOCTYPE html>
