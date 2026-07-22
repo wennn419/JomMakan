@@ -90,13 +90,16 @@ $result = $stmt->get_result();
         <h1>❤️ My Favourite Foods</h1>
 
         <p class="favourite-count">
+            <!-- Check whether any favourite records exist -->
             <?php if ($result->num_rows > 0): ?>
+                <!-- Display the total number of favourite meals --> <!-- Add "s" when there is more than one favourite meal -->
                 You have <strong><?= $result->num_rows ?></strong> favourite meal<?= $result->num_rows > 1 ? 's' : '' ?>.
             <?php else: ?>
                 You haven't added any favourite meals yet.
             <?php endif; ?>
         </p>
 
+    <!-- Display the empty state when no favourite foods exist -->
     <?php if ($result->num_rows == 0): ?>
 
     <div class="empty-state">
@@ -125,6 +128,7 @@ $result = $stmt->get_result();
 
     <div class="result-card">
 
+    <!-- Escape special characters before displaying user or database content -->
     <img
         src="<?= htmlspecialchars($row['image']) ?>"
         alt="<?= htmlspecialchars($row['food_name']) ?>">
@@ -149,6 +153,7 @@ $result = $stmt->get_result();
 
    <div class="card-actions">
 
+   <!-- Form used to submit the remove favourite request -->
     <form method="POST" class="remove-form">
 
     <input
@@ -172,7 +177,8 @@ $result = $stmt->get_result();
     <button
         class="compare-btn"
         onclick="window.location.href='food.php?id=<?= $row['id'] ?>&from=favourites'">
-
+        <!-- Redirect to the selected food detail page -->
+         
         View Details →
 
     </button>
