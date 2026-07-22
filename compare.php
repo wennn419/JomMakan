@@ -234,10 +234,6 @@ foreach ($foods as $food) {
 
 </section>
 
-</main>
-
-</div>
-
 <?php endif; ?>
 
 <?php if (count($foods) <= 1): ?>
@@ -254,6 +250,10 @@ foreach ($foods as $food) {
 </div>
 
 <?php endif; ?>
+
+</main>
+
+</div>
 
 <script src="js/compare.js"></script>
 <script src="js/dashboard.js"></script>

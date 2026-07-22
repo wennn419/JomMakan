@@ -210,16 +210,16 @@ $relatedFoods = $stmt->get_result();
         $backLink = $from . ".php";
 
     }
-?>
+    ?>
 
-<a href="<?= htmlspecialchars($backLink) ?>" class="back-button">
-    <i class="fa-solid fa-arrow-left"></i>
-</a>
+    <a href="<?= htmlspecialchars($backLink) ?>" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
 
-    <img src="<?= htmlspecialchars($food['image']) ?>"
-         alt="<?= htmlspecialchars($food['food_name']) ?>">
+        <img src="<?= htmlspecialchars($food['image']) ?>"
+            alt="<?= htmlspecialchars($food['food_name']) ?>">
 
-</div>
+    </div>
 
     <div class="food-info">
 
@@ -265,8 +265,11 @@ $relatedFoods = $stmt->get_result();
             class="action-btn save-btn <?= $isFavourite ? 'active' : '' ?>"
         >
 
+            <!-- Apply the active style if the food is already favourited -->
+            <!-- Display a solid or regular heart icon based on the favourite status -->
             <i class="<?= $isFavourite ? 'fa-solid' : 'fa-regular' ?> fa-heart"></i>
 
+            <!-- Text indicating favourite status -->
             <span>
                 <?= $isFavourite ? "Favourited" : "Favourite" ?>
             </span>
@@ -275,15 +278,15 @@ $relatedFoods = $stmt->get_result();
 
     </form>
 
-    <button class="action-btn share-btn" id="shareButton">
+        <button class="action-btn share-btn" id="shareButton">
 
         <img src="image/icons/share.png" alt="Share">
 
         <span>Share</span>
 
-    </button>
+        </button>
 
-</div>
+    </div>
 
         <div class="food-description">
 
@@ -295,25 +298,25 @@ $relatedFoods = $stmt->get_result();
 
         <div class="compare-section">
 
-    <h3>Compare Similar Foods</h3>
+        <h3>Compare Similar Foods</h3>
 
-    <p>
-        Find similar dishes from other restaurants and compare prices and ratings.
-    </p>
+        <p>
+            Find similar dishes from other restaurants and compare prices and ratings.
+        </p>
 
-    <?php if (!empty($food['compare_group'])): ?>
+        <?php if (!empty($food['compare_group'])): ?>
 
-    <a
-    href="compare.php?group=<?= urlencode($food['compare_group']) ?>&id=<?= $food['id'] ?>"
-    class="compare-link">
+        <a
+        href="compare.php?group=<?= urlencode($food['compare_group']) ?>&id=<?= $food['id'] ?>&from=<?= urlencode($from) ?>"
+        class="compare-link">
 
-    Compare Now →
+        Compare Now →
 
-    </a>
+        </a>
 
-    <?php endif; ?>
+        <?php endif; ?>
 
-</div>
+        </div>
 
         </div>
 
