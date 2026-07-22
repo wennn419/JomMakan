@@ -2,23 +2,30 @@
 
 session_start();
 
+// Check whether the logged-in user is an administrator
 $isAdmin = isset($_SESSION["role"]) && $_SESSION["role"] === "admin";
 
 include "db_connect.php";
 
+// Get the logged-in user's ID, or null if the user is not logged in
 $userId = $_SESSION["user_id"] ?? null;
 
+// Get the source page from the URL, default to "search"
 $from = trim($_GET['from'] ?? 'search');
 
+// Stop the program if the food ID is missing
 if (!isset($_GET['id'])) {
+    // Stop the script and display an error message
     die("Food ID not found.");
 }
 
 $id = (int)$_GET['id'];
 
-// Save to Recently Viewed (only if logged in)
+// Save to Recently Viewed (only if logged in) 
+// Save recently viewed food only for logged-in users
 if ($userId !== null) {
 
+// Insert a recently viewed record or update the view time if it already exists
     $sql = "
     INSERT INTO recently_viewed (user_id, food_id)
     VALUES (?, ?)
@@ -29,6 +36,9 @@ if ($userId !== null) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $userId, $id);
     $stmt->execute();
+
+    // Because this SQL statement inserts data into the database. 
+    // It does not return a result set, so get_result() is not needed.
 }
 
 $sql = "
@@ -43,10 +53,14 @@ SELECT
 FROM foods
 JOIN restaurants
 ON foods.restaurant_id = restaurants.id
-WHERE foods.id = $id
+WHERE foods.id = ?
 ";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 if ($result->num_rows == 0) {
     die("Food not found.");
@@ -54,22 +68,32 @@ if ($result->num_rows == 0) {
 
 $food = $result->fetch_assoc();
 
+// Assume the food is not in the user's favourites
 $isFavourite = false;
 
+// Check favourite status only for logged-in users
 if ($userId !== null) {
 
     $favouriteSql = "
     SELECT *
     FROM favourites
-    WHERE food_id = $id
-    AND user_id = $userId
+    WHERE food_id = ?
+    AND user_id = ?
     ";
+    // Check whether this food is already in the user's favourites
 
-    $favouriteResult = $conn->query($favouriteSql);
+    $stmt = $conn->prepare($favouriteSql);
+    $stmt->bind_param("ii", $id, $userId);
+    $stmt->execute();
 
+    $favouriteResult = $stmt->get_result();
+
+    // Set the favourite status based on whether a matching record exists
+    // food detail page will show "Favourited" if the user has already favourited this food
     $isFavourite = $favouriteResult->num_rows > 0;
 }
 
+// Process the favourite button only when the form is submitted
 if (
     $_SERVER['REQUEST_METHOD'] === 'POST'
     && isset($_POST['toggleFavourite'])
@@ -82,8 +106,10 @@ if (
 
     }
 
+    // Check the current favourite status
     if ($isFavourite) {
 
+        // Remove the food from the current user's favourites
         $conn->query("
             DELETE FROM favourites
             WHERE food_id = $id
@@ -103,11 +129,13 @@ if (
 
     }
 
+    // Redirect back to the Food Detail page
     header("Location: food.php?id=$id&from=$from");
     exit;
 }
 
 // Get other foods from the same restaurant
+// Store the current restaurant ID and food ID
 $restaurantId = $food['restaurant_id'];
 $currentFoodId = $food['id'];
 
@@ -118,11 +146,13 @@ WHERE restaurant_id = ?
 AND id != ?
 LIMIT 4
 ";
+// != no equal ; Retrieve other foods from the same restaurant except the current food
 
 $stmt = $conn->prepare($relatedSql);
 $stmt->bind_param("ii", $restaurantId, $currentFoodId);
 $stmt->execute();
 
+// Get the related food records for display
 $relatedFoods = $stmt->get_result();
 ?>
 
@@ -149,31 +179,37 @@ $relatedFoods = $stmt->get_result();
 
     <div class="food-image">
 
-<?php
-if ($from == "compare") {
+    <?php
+    // Determine the correct Back button destination
+    if ($from == "compare") {
 
+    // Preserve the original source page if compare come from search or result page,
+    // so that the back button can return to the correct page
     $origin = $_GET['origin'] ?? 'search';
 
+    // Return to the Compare page
     $backLink =
         "compare.php?group=" . urlencode($_GET['group']) .
         "&id=" . (int)($_GET['food'] ?? 0) .
         "&from=" . urlencode($origin);
 
-}
+    }
 
-elseif ($from == "result") {
+    elseif ($from == "result") {
 
-    $mode = $_GET['mode'] ?? 'personalized';
+        $mode = $_GET['mode'] ?? 'personalized';
 
-    $backLink = "result.php?mode=" . urlencode($mode);
+        // Return to the Result page
+        $backLink = "result.php?mode=" . urlencode($mode);
 
-}
+    }
 
-else {
+    else {
 
-    $backLink = $from . ".php";
+    // Return to the previous page
+        $backLink = $from . ".php";
 
-}
+    }
 ?>
 
 <a href="<?= htmlspecialchars($backLink) ?>" class="back-button">
@@ -189,17 +225,19 @@ else {
 
         <h1><?= htmlspecialchars($food['food_name']) ?></h1>
 
+        <!-- Clickable restaurant information -->
+        <!-- # Placeholder link handled by JavaScript -->
         <a
         href="#"
         class="restaurant-name"
         id="restaurantInfoBtn"
         >
 
-    <img src="image/icons/location.png" alt="Location">
+        <img src="image/icons/location.png" alt="Location">
 
-    <span><?= htmlspecialchars($food['restaurant_name']) ?></span>
+        <span><?= htmlspecialchars($food['restaurant_name']) ?></span>
 
-</a>
+        </a>
 
         <p class="food-price">
             RM <?= number_format($food['price'],2) ?>
@@ -207,35 +245,35 @@ else {
 
        <div class="food-meta">
 
-    <p class="food-rating">
-        ⭐ <?= htmlspecialchars($food['rating']) ?>
-    </p>
+        <p class="food-rating">
+            ⭐ <?= htmlspecialchars($food['rating']) ?>
+        </p>
 
-    <p class="food-cuisine">
-        <?= htmlspecialchars($food['cuisine']) ?> Cuisine
-    </p>
+        <p class="food-cuisine">
+            <?= htmlspecialchars($food['cuisine']) ?> Cuisine
+        </p>
 
-</div>
+    </div>
 
-         <div class="food-actions">
+    <div class="food-actions">
 
-<form method="POST">
+    <form method="POST">
 
-    <button
-        type="submit"
-        name="toggleFavourite"
-        class="action-btn save-btn <?= $isFavourite ? 'active' : '' ?>"
-    >
+        <button
+            type="submit"
+            name="toggleFavourite"
+            class="action-btn save-btn <?= $isFavourite ? 'active' : '' ?>"
+        >
 
-        <i class="<?= $isFavourite ? 'fa-solid' : 'fa-regular' ?> fa-heart"></i>
+            <i class="<?= $isFavourite ? 'fa-solid' : 'fa-regular' ?> fa-heart"></i>
 
-        <span>
-            <?= $isFavourite ? "Favourited" : "Favourite" ?>
-        </span>
+            <span>
+                <?= $isFavourite ? "Favourited" : "Favourite" ?>
+            </span>
 
-    </button>
+        </button>
 
-</form>
+    </form>
 
     <button class="action-btn share-btn" id="shareButton">
 

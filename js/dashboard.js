@@ -1,47 +1,69 @@
-console.log("dashboard.js loaded");
-
+// Run the script after the HTML document has fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-    
+    // sidebar
+    // Get the sidebar and toggle button elements
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggle-btn');
 
+    // Toggle the sidebar when the button is clicked
     toggleBtn.addEventListener('click', () => {
+
+        // Add or remove the "collapsed" class
         sidebar.classList.toggle('collapsed');
-        localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+
+        // Save the sidebar state in Local Storage
+        localStorage.setItem(
+            'sidebarCollapsed',
+            sidebar.classList.contains('collapsed')
+        );
     });
 
+    // Restore the previous sidebar state after refreshing the page
     if (localStorage.getItem('sidebarCollapsed') === 'true') {
         sidebar.classList.add('collapsed');
     }
 
+    // Highlight the currently selected menu item
     document.querySelectorAll('.menu-item').forEach(item => {
+
         item.addEventListener('click', function() {
-            document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+
+            // Remove the active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(i =>
+                i.classList.remove('active')
+            );
+
+            // Add the active class to the clicked menu item
             this.classList.add('active');
         });
     });
 
+    // Change the menu icon when the mouse hovers over it
     document.querySelectorAll(".menu-item").forEach(item => {
 
-    const icon = item.querySelector(".menu-icon");
+        // Get the icon inside the current menu item
+        const icon = item.querySelector(".menu-icon");
 
-    item.addEventListener("mouseenter", () => {
+        // Change the icon to the gold version when hovering
+        item.addEventListener("mouseenter", () => {
 
-        if (!item.classList.contains("active")) {
-            icon.src = icon.src.replace(".png", "-gold.png");
-        }
+            if (!item.classList.contains("active")) {
+                icon.src = icon.src.replace(".png", "-gold.png");
+            }
+
+        });
+
+        // Restore the original icon when the mouse leaves
+        item.addEventListener("mouseleave", () => {
+
+            if (!item.classList.contains("active")) {
+                icon.src = icon.src.replace("-gold.png", ".png");
+            }
+
+        });
 
     });
 
-    item.addEventListener("mouseleave", () => {
-
-        if (!item.classList.contains("active")) {
-            icon.src = icon.src.replace("-gold.png", ".png");
-        }
-
-    });
-
-});
 });
 
 const filterBtn = document.getElementById("filter-btn");

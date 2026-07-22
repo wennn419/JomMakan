@@ -1,6 +1,10 @@
 <?php
 
+session_start();
+
 include "db_connect.php";
+
+$currentPage = "search";
 
 if (!isset($_GET['group'])) {
     die("No compare group selected.");
@@ -92,58 +96,7 @@ foreach ($foods as $food) {
 <body>
 <div class="dashboard">
 
-    <aside class="sidebar" id="sidebar">
-
-        <div class="sidebar-header">
-            <div class="logo">
-                <i class="fa-solid fa-bowl-rice" style="font-size:22px; color:#C88A2D; flex-shrink:0;"></i>
-                <span class="logo-text">JomMakan</span>
-            </div>
-            <button id="toggle-btn" title="Toggle sidebar">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-
-        <div class="sidebar-menu">
-            <!-- home gold -->
-            <a href="home.php" class="menu-item">
-            <img class="menu-icon" src="image/dashboard/home.png" alt="Home">
-            <span class="label">Home</span>
-            </a>
-            <!-- original -->
-            <a href="search.php" class="menu-item active">
-                <img src="image/dashboard/search-gold.png" alt="search">
-                <span class="label">Search</span>
-            </a>
-            <a href="favourites.php" class="menu-item">
-                <img src="image/icons/heart.png" alt="favourites">
-                <span class="label">Favourites</span>
-            </a>
-            <a href="recently.php" class="menu-item">
-                <img src="image/dashboard/recently.png" alt="recently">
-                <span class="label">Recently Viewed</span>
-            </a>
-            <a href="surprise.php" class="menu-item">
-                <img src="image/dashboard/surprise.png" alt="surprise">
-                <span class="label">Surprise Me</span>
-            </a>
-        </div>
-
-        <div class="sidebar-divider"></div>
-
-        <div class="sidebar-bottom">
-            <a href="profile.php" class="menu-item">
-                <i class="fa-solid fa-user"></i>
-                <span class="label">Profile</span>
-            </a>
-            <a href="help.php" class="menu-item">
-                <i class="fa-solid fa-circle-question"></i>
-                <span class="label">Help</span>
-            </a>
-            
-        </div>
-
-    </aside>
+<?php include "includes/sidebar.php"; ?>
 
 <main class="main-content">
 
@@ -303,6 +256,7 @@ foreach ($foods as $food) {
 <?php endif; ?>
 
 <script src="js/compare.js"></script>
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>
